@@ -5,6 +5,7 @@
 Hello, this is an attempt to solve the Traveling Salesman Problem with a polynomial time solution. The idea for this solution struck during my COP 4210 - Discrete Structures II class at the University of Central Florida taught by Professor Matthew Gerber.
 
 **Side bar**
+
 I often struggle with the idea of learning things. I've noticed it takes me about 3 or 4 times of repitition before completely understandig things. However, over the years of my college experience, I've taken note that I learn better by not learning what is, but learning what isn't. Everytime I struggle with math, it's usually because teachers either don't explain the conceptual topics of *why* the math is the way it is or don't explicity point out the difference between current and new knowledge. For example, it would be nice to iteratively repeat the importance of complex numbers and their significance in contructing wave functions and *why* we use trigonometry to understand and describe the fundamental nature of waves in different coordinate systems. From my experience, not enough teachers do this, which is why I spend my own free time finding these connections and answers to my own questions, where teachers can't do themself.
 
 During the Discrete course I was experiencing this feeling again, and found myself stuck on understanding complexity classes. It bothers me that there is no definate proof to the `P=NP` complexity problems. I thought that reading my textbook might give me more insight, but after the tenth reread on the significance of different problem sets, I realized the sheer uncertainty that mathematicians have to understand systems. Personally, I never though that proof by reduction was a strong argument, and boiling down many problem sets to NP-Complete is dangerous, becasue of its lack of proof in relation to solving things in polynomial time. After all, there are different ways to solve the same problem.
@@ -15,11 +16,13 @@ The inspiraiton behind this solution is very simple. Consider the worst case, pi
 
 **Given**
 > The graph is complete
+> 
 > There is one hamiltonian cycle
 
 Because the graph is complete, there must be a hamiltonian cycle. This being said, we don't have to worry about traversing the path to find a hamiltonian cycle to consider if there is a path, we can treat the nodes seperately, picking its entry and output points respectfully, and widdling down the edge selections, until there aren't anymore to choose from.
 
 **Sum the nodes**
+
 Take your graph, a *NxN* matrix, where the intersection between two outer nodes have an edge. Nodes cannot have an edge between themselves, so we can mark there edge weight as zero.
 
     A 0 6725 5474 3237 5566 7594 6510 3221 9257 6624 4132
@@ -35,6 +38,7 @@ Take your graph, a *NxN* matrix, where the intersection between two outer nodes 
     K 4132 186 2113 6402 3103 3515 9118 2901 7582 5239 0
 
 > NOTE
+> 
 > The top and bottom half of these graph forms two equal triangles where every node has an edge weight with every other node.
 
 To get the sum, add up the columns or the rows, the result should be the same for both.
@@ -71,6 +75,7 @@ To pick the best options from the worst node, we need some sort of system to han
 
 The most basic group looks like this: `A-B-C` where A and C are the outer nodes in group. B has both input and output edges, and cannot have anymore edges.
 > Note
+>
 > A and C need an input and output edge respectively, to complete the hamiltonian cycle.
 
 **Iterations**
@@ -94,96 +99,141 @@ Psuedocode:
         merge groups
 
 > NOTE
+>
 > The order in the groups doesn't matter since the graph is bidirectional.
 
 ### 1: Choose A
 Create new group
+
 -A-
+
 -A-H
+
 D-A-H
 
+
 **Current Groups:**
+
 D-A-H
 
 ### 2: Choose I
 Create new group
+
 -I-
+
 C-I-
+
 C-I-J
 
+
 **Current Groups:**
+
 D-A-H
+
 C-I-J
 
 ### 3: Choose G
 Create new group
+
 -G-
+
 -G-D
 
+
 Merge groups
+
 -G-D and D-A-H
+
 -G-D-A-H
 
 Find input node
+
 E-G-D-A-H
 
+
 **Current Groups:**
+
 E-G-D-A-H
+
 C-I-J
 
 ### 4: Choose E
 Find input edge
+
 -E-G-D-A-H
+
 K-E-G-D-A-H
 
 > NOTE
+>
 > Node D was skipped because it already has input and output edges.
 
+
 **Current Groups:**
+
 K-E-G-D-A-H
+
 C-I-J
 
 ### 5: Choose J
 Find output edge
+
 C-I-J-
+
 C-I-J-K
 
 > NOTE
+>
 > Node C was skipped because it would close of the group, meaning that group wouldn't be able to merge with other groups later on.
+>
 > Node D was skipped because it already has input and output edges.
+>
 > Node G was skipped because it already has input and output edges.
 
 Merge groups
+
 C-I-J-K and K-E-G-D-A-H
+
 C-I-J-K-E-G-D-A-H
 
+
 **Current Groups:**
+
 C-I-J-K-E-G-D-A-H
 
 ### 6: Choose B
 Create new group
+
 -B-
+
 -B-F
 
 > NOTE
+>
 > Node K was skipped because it already has input and output edges.
 
 C-B-F
 
 > NOTE
+>
 > Node D was skipped because it already has input and output edges.
 
 Merge groups
+
 C-B-F and C-I-J-K-E-G-D-A-H
+
 F-B-C-I-J-K-E-G-D-A-H
 
+
 **Current Groups:**
+
 F-B-C-I-J-K-E-G-D-A-H
 
 ### Finished
 F-B-C-I-J-K-E-G-D-A-H
 
 End node next is start node
+
 F-B-C-I-J-K-E-G-D-A-H-F
 
 This yields (with around 15% accuracy) the shortest path. To get the total sum of this path, traverse through the linked list and add the edge weights.
