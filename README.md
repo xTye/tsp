@@ -56,6 +56,7 @@ To get the sum, add up the columns or the rows, the result should be the same fo
     K 4132 186 2113 6402 3103 3515 9118 2901 7582 5239 0  = 44291
 
 **Sort the nodes**
+
 Sort the nodes in worst case to best case scenario. The result is going to contribute to how the nodes are selected in the algorithm, where we should be picking the worst node first.
 
     A 0 6725 5474 3237 5566 7594 6510 3221 9257 6624 4132 = 58340
@@ -71,6 +72,7 @@ Sort the nodes in worst case to best case scenario. The result is going to contr
     F 7594 1657 3691 3906 2662 0 2010 654 2638 5658 3515  = 33985
     
 **Groups / Linked Lists**
+
 To pick the best options from the worst node, we need some sort of system to handle the grouping mechanisms for situations where A already has an input and output. So, I created a system with groups, that act as a Linked List, to ensure the nodes that aren't a start or end are rejected from the selection pool. There can relistically be less than twice the groups as there are nodes, because every group has to have at least 3 nodes, meaning there can at most be N/3 groups, but it rarely happens that there are this many groups. Notably, we must combine two groups that have the same edge node. As a result, we avoid potential edge nodes from being on an edge on one group and in the middle of another group. Therefore, we *must* connect the two groups if we can.
 
 The most basic group looks like this: `A-B-C` where A and C are the outer nodes in group. B has both input and output edges, and cannot have anymore edges.
@@ -242,10 +244,11 @@ This yields (with around 15% accuracy) the shortest path. To get the total sum o
 After running the `combined.py` script that takes the non-polynomial time solution and my solution and compares the result sum to each other. The results show about 15% accuracy when using both integers and decimal solutions as a sample pool of 11 nodes. The non-polynomial time solution can only calculate 11 nodes within a reasonable time. Anymore nodes than that, and the runtime has a noticable realtime affect on calculation times. Notably, this solution does become more accurate with the lower amounts of nodes, but nonetheless has shown more solidarity in the takeaways more than anything else.
 
 ### Takeaways
-This was a fun experiment. While I did learn what its like to have a taste of existential humility, I didn't give up hope to find a polynomial solution. Something to note is that it is correct, sometimes. I think this algorithm can be built on, maybe to not provide a solution with *100%* accuracy, but with *99.999%* accuracy. This includes things like taking multiple polynomial time solutions and merging them together. As well as researching other solutions, learning from their algorithms and modifying them.
+This was a fun experiment. While I did learn what its like to have a taste of existential humility, I didn't give up hope to find a polynomial solution. After all, it is correct... sometimes. I think this algorithm can be built on, maybe to not provide a solution with *100%* accuracy, but with *99.999%* accuracy. This includes things like taking multiple polynomial time solutions and merging them together. As well as researching other solutions, learning from their algorithms and modifying them.
 
 Additionally, its important to note that tradeoffs happen when picking an edge, perhaps if I were to weigh the value in tradeoffs of each time an edge weight is picked, then we can influence the overall sum of the path.
 
+#### Thoughful Questions
 How could we design an elo system to rate the value of the edges?
 How much stake will we risk when picking an edge N from another edge M, that may have a diminishing return on a potential path that M had, that is otherwise lost?
 In the case of merging multiple polynomial time solutions, will this create a runtime that is thereotically the limit of a non-polynomial time solution?
