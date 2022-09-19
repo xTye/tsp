@@ -1,5 +1,5 @@
-# TSP
-### Spreading wealth using the worst case solution.
+# Traveling Salesman Problem
+##### Spreading wealth using the worst case solution.
 
 ## Introduction
 Hello, this is an attempt to solve the Traveling Salesman Problem with a polynomial time solution. The idea for this solution struck during my COP 4210 - Discrete Structures II class at the University of Central Florida taught by Professor Matthew Gerber.
