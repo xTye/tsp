@@ -249,7 +249,10 @@ This was a fun experiment. While I did learn what its like to have a taste of ex
 Additionally, its important to note that tradeoffs happen when picking an edge, perhaps if I were to weigh the value in tradeoffs of each time an edge weight is picked, then we can influence the overall sum of the path.
 
 #### Thoughful Questions
-How could we design an elo system to rate the value of the edges?
-How much stake will we risk when picking an edge N from another edge M, that may have a diminishing return on a potential path that M had, that is otherwise lost?
-In the case of merging multiple polynomial time solutions, will this create a runtime that is thereotically the limit of a non-polynomial time solution?
-How will this relate the accuracy of the algorithm?
+> How could we design an elo system to rate the value of the edges?
+
+> How much stake will we risk when picking an edge N from another edge M, that may have a diminishing return on a potential path that M had, that is otherwise lost?
+
+>In the case of merging multiple polynomial time solutions, will this create a runtime that is thereotically the limit of a non-polynomial time solution?
+
+>How will this relate the accuracy of the algorithm?
