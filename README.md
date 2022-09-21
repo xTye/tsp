@@ -6,7 +6,7 @@ Hello, this is an attempt to solve the Traveling Salesman Problem with a polynom
 
 **Side bar**
 
-I often struggle with the idea of learning things. I've noticed it takes me about 3 or 4 times of repitition before completely understandig things. However, over the years of my college experience, I've taken note that I learn better by not learning what is, but learning what isn't. Everytime I struggle with math, it's usually because teachers either don't explain the conceptual topics of *why* the math is the way it is or don't explicity point out the difference between current and new knowledge. For example, it would be nice to iteratively repeat the importance of complex numbers and their significance in contructing wave functions and *why* we use trigonometry to understand and describe the fundamental nature of waves in different coordinate systems. From my experience, not enough teachers do this, which is why I spend my own free time finding these connections and answers to my own questions, where teachers can't do themself.
+I often struggle with the idea of learning things. I've noticed it takes me about 3 or 4 times of repitition before completely understanding things. However, over the years of my college experience, I've taken note that I learn better by not learning what is, but learning what isn't. Everytime I struggle with math, it's usually because teachers either don't explain the conceptual topics of *why* the math is the way it is or don't explicity point out the difference between current and new knowledge. For example, it would be nice to iteratively repeat the importance of complex numbers and their significance in contructing wave functions and *why* we use trigonometry to understand and describe the fundamental nature of waves in different coordinate systems. From my experience, not enough teachers do this, which is why I spend my own free time finding these connections and answers to my own questions, where teachers can't do themself.
 
 During the Discrete course I was experiencing this feeling again, and found myself stuck on understanding complexity classes. It bothers me that there is no definate proof to the `P=NP` complexity problems. I thought that reading my textbook might give me more insight, but after the tenth reread on the significance of different problem sets, I realized the sheer uncertainty that mathematicians have to understand systems. Personally, I never though that proof by reduction was a strong argument, and boiling down many problem sets to NP-Complete is dangerous, becasue of its lack of proof in relation to solving things in polynomial time. After all, there are different ways to solve the same problem.
 
@@ -18,6 +18,8 @@ The inspiraiton behind this solution is very simple. Consider the worst case, pi
 > The graph is complete
 > 
 > There is one hamiltonian cycle
+>
+> Positive integer edge weights
 
 Because the graph is complete, there must be a hamiltonian cycle. This being said, we don't have to worry about traversing the path to find a hamiltonian cycle to consider if there is a path, we can treat the nodes seperately, picking its entry and output points respectfully, and widdling down the edge selections, until there aren't anymore to choose from.
 
@@ -84,20 +86,35 @@ The most basic group looks like this: `A-B-C` where A and C are the outer nodes 
 
 Psuedocode:
     Check if biggest group size has N nodes
+    
       break
+      
     Pick the next worst node
+    
     Check if it is in the middle of a group
+    
       next node
+      
     Check if its on an edge
+    
       find the other input / output edge - that is not going to close off current group size has N nodes
+      
       check if other input / output edge can connect to another group
+      
         merge groups
+        
     Otherwise, create a new group
+    
       find input edge
+      
       check if input edge exists on another group
+      
         merge groups
+        
       find output edge - that is not going to close off current group unless group size has N nodes
+      
       check if output edge can connect to another group
+      
         merge groups
 
 > NOTE
