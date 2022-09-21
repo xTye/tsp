@@ -85,36 +85,22 @@ The most basic group looks like this: `A-B-C` where A and C are the outer nodes 
 **Iterations**
 
 Psuedocode:
+
     Check if biggest group size has N nodes
-    
       break
-      
     Pick the next worst node
-    
     Check if it is in the middle of a group
-    
       next node
-      
     Check if its on an edge
-    
       find the other input / output edge - that is not going to close off current group size has N nodes
-      
       check if other input / output edge can connect to another group
-      
-        merge groups
-        
+        merge groups   
     Otherwise, create a new group
-    
       find input edge
-      
       check if input edge exists on another group
-      
         merge groups
-        
       find output edge - that is not going to close off current group unless group size has N nodes
-      
       check if output edge can connect to another group
-      
         merge groups
 
 > NOTE
